@@ -1,0 +1,39 @@
+{{>header}}
+<body>
+    {{>navbar}}
+    <div class="container">
+        <div class="left">
+            <ul>
+                <li class="categories category1">Antique Paintings</li>
+                <li class="categories category2">Black And White</li>
+                <li class="categories category3">Indian Tradition</li>
+                <li class="categories category4">Painting</li>
+                <li class="categories category5">Fine Art</li>
+                <li class="categories category6">Colourful</li>
+                <li class="categories category7">Decorative Art</li>
+            </ul>
+        </div>
+        <div class="right">
+            <h1>Art Gallery</h1>
+            <img class="homeimg" src="assets/Paintings/1.jpg"/>
+            <div class="homedesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, ex quisquam? Adipisci odio quos iusto assumenda tempore nam ipsum minima totam molestiae sint eligendi ipsa reprehenderit sequi, repellendus blanditiis cum.</div>
+        </div>
+    </div>
+    <footer>
+        <address>
+            Dosti height Apartments<br />
+            Antop Hill, wadala, Mumbai<br />
+            open time: 9am to 10pm <br />
+            <div id="date">Current date</div>
+        </address>
+    </footer>
+    {{>footer}}
+    <script>
+        let date=document.getElementById("date");
+        const d=new Date();
+        // console.log(d);
+        date.innerText=d.toUTCString();
+    </script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

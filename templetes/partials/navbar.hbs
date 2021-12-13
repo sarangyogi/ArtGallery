@@ -1,0 +1,22 @@
+<div id="navbar">
+        <div class="logo">
+            <p onclick="openwindow()">Art Gallery</p>
+            {{!-- <p onclick="closewindow()">Close</p> --}}
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="navitem"><a href="/">Home</a></li>
+                <li class="navitem"><a href="/about">About</a></li>
+                <li class="navitem"><a href="/gallery">Gallery</a></li>
+                <li class="navitem"><a href="/contact">Contact</a></li>
+                <li class="navitem"><a href="/cart">Cart</a></li>
+                {{#if user}}
+                    <li class="navitem"><a href="/">Welcome {{user.email}}</a></li>
+                    <li class="navitem"><a href="/logout">Logout</a></li>
+                {{else}}
+                    <li class="navitem"><a href="/login">Login</a></li>
+                    <li class="navitem"><a href="/register">Registration</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+</div>

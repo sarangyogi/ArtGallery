@@ -1,0 +1,255 @@
+body{
+    /* background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+    /* background-color: #FBAB7E;
+background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%); */
+/* background-color: #85FFBD;
+background-image: linear-gradient(0deg, #85FFBD 0%, #FFFB7D 100%); */
+/* background-color: #8BC6EC;
+background-image: linear-gradient(270deg, #8BC6EC 0%, #9599E2 100%); */
+    background: #7F7FD5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#navbar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(245,245,245,0.6);
+    margin-bottom:10px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+ul{
+    text-decoration: none;
+    padding: 0px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.logo{
+    /* padding-top: 13px;
+    padding-left: 2%; */
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.navbar{
+    width: 75%;
+}
+.navbar ul{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.navitem a{
+    color: black;    
+}
+.navitem a:hover{
+    text-decoration: none;
+}
+nav li{
+    text-decoration: none;
+    list-style-type: none;
+    /* display: inline-block; */
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 60px;
+}
+.left{
+    width: 40%;
+    max-width: 300px;
+}
+.left li{
+    background-color: whitesmoke;
+    list-style-type: none;
+    font-size: 1.3rem;
+    padding: 5%;
+    border-bottom: black solid 1.5px;
+    border-right: black solid 1.5px;
+    cursor: pointer;
+}
+.right{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.homeimg{ 
+    width: 70%;
+    max-width: 460px;
+}
+.homedesc{
+    text-align: justify;
+    padding: 5%;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.about{
+    padding: 5%;
+    align-items: center;
+    display: flex;
+}
+.about p{
+    padding: 2%;
+    line-height: 1.5;
+}
+.about img{
+    width: 50%;
+    max-width: 450px;
+}
+
+.contact{
+    width:100%;
+    display:flex;
+    justify-content:space-evenly;
+}
+.leftcontact{
+    width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align:center;
+    padding: 2%;
+}
+.map{
+    width:60%;
+    text-align:center;
+}
+.innermap{
+    width:60%;
+    height: 100%;
+}
+.contactform{
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:5%;
+}
+.contactform form{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}
+form{
+    margin-top: 50px;
+}
+#login{
+    width: 60%;
+    margin-top: 100px;
+    /* background-color: #111; */
+    /* background-image: url('./../assets/Paintings/1.jpg'); */
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 40px 10px;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+}
+#login *{
+    /* background-color: #333; */
+    /* padding: 10px; */
+    /* color: white; */
+}
+
+.btn{
+    margin-top: 7px;
+}
+label,input,textarea{
+    margin-bottom:10px;
+    width:60%;
+    height: 30px;
+    border-radius: 10px;
+}
+.heading{
+    text-align: center;
+    margin-top: 70px;
+}
+.gallery{
+    display:flex;
+    flex-direction:column;
+    margin-top: 70px;
+}
+.gallery h1{
+    text-align:center;
+}
+.sections{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+.sections img{
+    width:26%;
+    height:350px;
+    padding: 10px;
+    min-width: 250px;
+}
+.backendImg{
+    display:flex;
+    width: 100%;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+.backendImg img{
+    width:92%;
+    height:300px;
+    padding-bottom: 10px;
+    /* min-width: 250px; */
+}
+.backendImg div{
+    width:26%;
+    height:500px;
+    margin: 10px;
+    min-width: 250px;
+}
+
+.signup{
+    color: white;
+    text-align: center;
+    /* width: 80%; */
+    width: 60%;
+    min-width: 320px;
+    height: 75vh;
+    margin:70px auto;
+    /* background-image: url('./../assets/Paintings/1.jpg'); */
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+    border-radius: 20px;
+}
+#signupform{
+    background-color: gray transparent;
+}
+footer{
+    clear: both;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 1%;
+    border-radius: 0px 0px 30px 30px;
+}
+
+.galleryform{
+    position: relative;
+    margin: 0px;
+}

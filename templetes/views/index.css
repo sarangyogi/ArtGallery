@@ -1,0 +1,159 @@
+#navbar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: whitesmoke;
+    margin-bottom:10px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+ul{
+    text-decoration: none;
+    padding: 0px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.logo{
+    padding-top: 13px;
+    padding-left: 2%;
+    width: 25%;
+}
+.navbar{
+    width: 75%;
+}
+.navbar ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+nav li{
+    text-decoration: none;
+    list-style-type: none;
+    /* display: inline-block; */
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 45px;
+}
+.left{
+    width: 40%;
+    max-width: 300px;
+}
+.left li{
+    background-color: whitesmoke;
+    list-style-type: none;
+    font-size: 1.3rem;
+    padding: 5%;
+    border-bottom: black solid 1.5px;
+    border-right: black solid 1.5px;
+    cursor: pointer;
+}
+.right{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.homeimg{ 
+    width: 70%;
+    max-width: 460px;
+}
+.homedesc{
+    text-align: justify;
+    padding: 5%;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.about{
+    padding: 5%;
+    align-items: center;
+    display: flex;
+}
+.about p{
+    padding: 2%;
+    line-height: 1.5;
+}
+.about img{
+    width: 50%;
+}
+
+.contact{
+    width:100%;
+    display:flex;
+    justify-content:space-evenly;
+}
+.leftcontact{
+    width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align:center;
+    padding: 2%;
+}
+.map{
+    width:60%;
+    text-align:center;
+}
+.innermap{
+    width:60%;
+    height: 100%;
+}
+.contactform{
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:5%;
+}
+.contactform form{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}
+label,input,textarea{
+    margin-bottom:10px;
+    width:60%;
+}
+.heading{
+    text-align: center;
+    margin-top: 55px;
+}
+.gallery{
+    display:flex;
+    flex-direction:column;
+    margin-top: 40px;
+}
+.gallery h1{
+    text-align:center;
+}
+.sections{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+.sections img{
+    width:26%;
+    height:350px;
+    padding: 10px;
+    min-width: 250px;
+}
+
+
+footer{
+    clear: both;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 1%;
+    border-radius: 0px 0px 30px 30px;
+}

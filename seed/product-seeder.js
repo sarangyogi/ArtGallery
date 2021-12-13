@@ -1,0 +1,158 @@
+const Product=require('./../modules/product');
+const mongoose=require('mongoose');
+
+// mongoose.connect('mongodb://localhost:27017/ArtGallery/');
+
+const products=[
+    new Product({
+        imagePath:"assets/Antique/1.jpg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:100
+    }),
+    new Product({
+        imagePath:"assets/BlackAndWhite/1.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:200
+    }),
+    new Product({
+        imagePath:"assets/BlackAndWhite/2.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1300
+    }),
+    new Product({
+        imagePath:"assets/BlackAndWhite/3.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1400
+    }),
+    new Product({
+        imagePath:"assets/BlackAndWhite/4.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1500
+    }),
+    new Product({
+        imagePath:"assets/BlackAndWhite/5.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1600
+    }),
+    new Product({
+        imagePath:"assets/Colourful/1.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1700
+    }),
+    new Product({
+        imagePath:"assets/Colourful/2.jpg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1800
+    }),
+    new Product({
+        imagePath:"assets/Colourful/3.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1900
+    }),
+    new Product({
+        imagePath:"assets/Colourful/4.jpeg",
+        title:'Antique Painting',
+        description:'lorem Ipsum',
+        price:1000
+    }),
+    new Product({
+        imagePath:"assets/Decorative/1.jpg",
+        title:'Decorative',
+        description:'lorem Ipsum',
+        price:1001
+    }),
+    new Product({
+        imagePath:"assets/Decorative/2.jpg",
+        title:'Decorative',
+        description:'lorem Ipsum',
+        price:1003
+    }),
+    new Product({
+        imagePath:"assets/Decorative/3.jpg",
+        title:'Decorative',
+        description:'lorem Ipsum',
+        price:1004
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/1.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:1005
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/2.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:1006
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/3.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:1007
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/4.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:1008
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/5.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:1009
+    }),
+    new Product({
+        imagePath:"assets/IndianTradition/6.jpeg",
+        title:'IndianTradition',
+        description:'lorem Ipsum',
+        price:10001
+    }),
+    new Product({
+        imagePath:"assets/Paintings/1.jpg",
+        title:'Painting',
+        description:'lorem Ipsum',
+        price:10011
+    }),
+    new Product({
+        imagePath:"assets/Paintings/2.jpg",
+        title:'Painting',
+        description:'lorem Ipsum',
+        price:10012
+    }),
+    new Product({
+        imagePath:"assets/Paintings/3.jpg",
+        title:'Painting',
+        description:'lorem Ipsum',
+        price:10013
+    }),
+]
+
+let done=0;
+
+for(let i=0;i<products.length;i++){
+    Product.findOne({imagePath:products[i].imagePath})
+    .then(result=>{
+        if(!result){
+            products[i].save(function(){
+                done++;
+                if(done==products.length){
+                    exit();
+                }
+            });
+        }
+    })
+}
+function exit(){
+    mongoose.disconnect();
+}

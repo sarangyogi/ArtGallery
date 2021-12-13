@@ -1,0 +1,42 @@
+{{>header}}
+<body>
+    {{>navbar}}
+    
+    <div class="gallery">
+        <h1>My Cart</h1>
+        <div class="backendImg">
+            {{# each products}}
+                {{# each this}}
+                    {{# if this.imagePath}}
+                        {{!-- {{this.title}} --}}
+                        <div>
+                            <img src={{this.imagePath}} alt=""/>
+                            <h2>{{this.title}}</h2>
+                            <p>{{this.description}}</p>
+                            <p>{{this.price}}</p>
+                            <form action="/cartdelete" class="galleryform" method="post">
+                                <input type="hidden" name="imagePath" value={{this.imagePath}} />
+                                <input type="hidden" name="title" value={{this.title}} />
+                                <input type="hidden" name="description" value={{this.description}} />
+                                <input type="hidden" name="price" value={{this.price}} />
+                                {{!-- <input type="hidden" name="_method" value="delete"> --}}
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            {{/each}}
+        </div>
+    </div>
+    Total Checkout Amount : {{amount}}
+    <a href="/payment">Checkout</a>
+    <footer>
+        <address>
+            Dosti height Apartments<br>
+            Antop Hill, wadala.<br>
+            Mumbai<br>
+            open time: 9am to 10pm
+        </address>
+    </footer>
+    {{>footer}}
+</body>

@@ -9,7 +9,6 @@ const User=require('./../modules/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const { requireAuth,checkUser }=require('./../middleware/authMiddleware');
-// const JWT_SECRET="n534789b%&*hbvhdhasgfdbfbdfdg12321##@$@#sdnshweojehwh"
 
 
 
@@ -47,6 +46,7 @@ router.use(express.urlencoded({extended:true}));
 router.post('/register',async (req,res)=>{
     const name=req.body.name;
     const email=req.body.email;
+    const isArtist=req.body.isArtist;
     let password=req.body.password;
     try{
         // password=await bcrypt.hash(password,10);
@@ -54,6 +54,7 @@ router.post('/register',async (req,res)=>{
             name:name,
             email:email,
             password:password,
+            isArtist:isArtist,
         })
         // console.log(name,password,email);
         const user= await registerEmployee.save();

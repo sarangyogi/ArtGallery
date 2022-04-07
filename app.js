@@ -5,6 +5,8 @@ const path=require('path');
 const hbs=require('hbs');
 const app=express();
 const morgan=require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 //modules
 const Product=require('./modules/product');
 const Contact=require('./modules/contact');
@@ -92,31 +94,70 @@ app.set("views",path.join(__dirname,'./templetes/views'));
 hbs.registerPartials(partial_path);
 
 const adminpages=require('./routes/admin_pages');
+const artist=require('./routes/artist');
 const { requireAuth,checkUser }=require('./middleware/authMiddleware');
 const product = require('./modules/product');
 
+app.get('*',checkUser);
 app.use('/',authroute);
 app.use('/',payment);
 app.use('/admin/pages',adminpages);
+app.use('/artist',artist);
 
 app.use('/auth/facebook',fcbk);
 app.use('/auth/google',google);
 
 // const topart=require('./routes/jsondata');
 // app.use('/topart',topart);
-app.get('*',checkUser);
 app.get('/',(req,res)=>{
     // res.sendFile("./views/index.html",{ root: __dirname});
-    res.render("index");
+    res.locals.user && res.locals.user.isArtist?
+    res.render("dashboard"):res.render("index");
 })
+app.get('/dashboard',(req,res)=>{
+    res.locals.user.isArtist?
+    res.render("dashboard"):res.redirect("/")
+})
+
 app.get('/about',(req,res)=>{
     // res.sendFile('./views/about.html',{root:__dirname});
     res.render("about");
 })
 app.get('/gallery',requireAuth,(req,res)=>{
-    Product.find((err,doc)=>{
+    // const email=res.locals.user.email;
+    // console.log(email,res.locals.user.isArtist)
+    res.locals.user.isArtist?
+    (res.redirect("/arts"))
+    :(Product.find((err,doc)=>{
         res.render("gallery",{products:doc});
-    });
+    }))
+})
+
+app.get('/arts',(req,res)=>{
+    res.locals.user.isArtist?(Product.find({createdBy:res.locals.user.email},(err,doc)=>{
+    //   console.log(doc)
+      res.render("arts",{products:doc});
+    })): res.redirect("/gallery")
+})
+app.post('/arts',checkUser,(req,res)=>{
+    const email=res.locals.user.email;
+    const imagePath=req.body.imagePath;
+    Product.find({imagePath:imagePath,createdBy:email},(err,result)=>{
+        console.log(result,email,imagePath);
+        product.deleteOne({_id:result[0]['_id']})
+        .then((result)=>{
+            console.log("Product is removed Successfully!",result);
+            res.redirect('/arts');
+        })
+        .catch((err)=>{
+            res.redirect("/arts")
+        })
+    })
+    
+})
+app.post('/deleteArt',(req,res)=>{
+    console.log(res.locals.user.email)
+    res.redirect("/artist/arts")
 })
 
 app.get('/gallery/data',(req,res)=>{
@@ -224,7 +265,6 @@ app.delete('/cart/:id',(req,res)=>{
 
 
 app.post('/gallery',checkUser,(req,res)=>{
-    console.log(res.locals.user);
     const email=res.locals.user['email'];
     const imagePath=req.params.imagePath;
     const finding=Cart.findOne({imagePath:imagePath})
@@ -240,8 +280,6 @@ app.post('/gallery',checkUser,(req,res)=>{
             });
             cart.save()
             .then(result=>{
-                // res.send(result)
-                // res.redirect('/cart');
                 res.redirect('/gallery');
             });
         }

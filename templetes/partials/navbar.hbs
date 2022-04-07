@@ -1,22 +1,101 @@
-<div id="navbar">
-        <div class="logo">
-            <p onclick="openwindow()">Art Gallery</p>
-            {{!-- <p onclick="closewindow()">Close</p> --}}
+<nav class="">
+  <div class="flex justify-between  bg-gray-800">
+    <div class="flex items-center justify-between h-16 w-full">
+      <div class="">
+          <img src="/assets/logo.png" alt="logo" class="w-14 h-12 p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+      </div>
+      <div class="">
+        <div class="hidden lg:block">
+          <div class="flex space-x-4">
+            <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium hover:no-underline"
+              aria-current="page">Home</a>
+            <a href="/about"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">About</a>
+
+            <a href="/contact"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+            {{#if user}}
+            {{#if user.isArtist}}
+            <a href="/arts"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Arts</a>
+            <a href="/artist/upload"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Uploads</a>
+            {{else}}
+            <a href="/cart"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Cart</a>
+            <a href="/gallery"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+            {{/if}}
+            <a href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Welcome
+              {{user.email}}</a>
+            <a href="/logout"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Logout</a>
+            {{else}}
+            <a href="/login"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Login</a>
+            <a href="/register"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white hover:no-underline px-3 py-2 rounded-md text-sm font-medium">Register</a>
+            {{/if}}
+          </div>
         </div>
-        <nav class="navbar">
-            <ul>
-                <li class="navitem"><a href="/">Home</a></li>
-                <li class="navitem"><a href="/about">About</a></li>
-                <li class="navitem"><a href="/gallery">Gallery</a></li>
-                <li class="navitem"><a href="/contact">Contact</a></li>
-                <li class="navitem"><a href="/cart">Cart</a></li>
-                {{#if user}}
-                    <li class="navitem"><a href="/">Welcome {{user.email}}</a></li>
-                    <li class="navitem"><a href="/logout">Logout</a></li>
-                {{else}}
-                    <li class="navitem"><a href="/login">Login</a></li>
-                    <li class="navitem"><a href="/register">Registration</a></li>
-                {{/if}}
-            </ul>
-        </nav>
-</div>
+      </div>
+    </div>
+    <button class="text-white lg:hidden" id="mobile">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="w-full hidden lg:hidden" id="show">
+    <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+    <a href="/about"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+    {{#if user.isArtist}}
+    <a href="/arts"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Arts</a>
+    <a href="/artist/upload"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Uploads</a>
+    {{else}}
+    <a href="/cart"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cart</a>
+    <a href="/gallery"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+    {{/if}}
+    <a href="/contact"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+    {{#if user}}
+    <a href="/"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Welcome
+      {{user.email}}</a>
+    <a href="/logout"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</a>
+    {{else}}
+    <a href="/login"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+    <a href="/register"
+      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+    {{/if}}
+  </div>
+</nav>
+<script>
+  let count = 0;
+  const k = document.getElementById('mobile')
+  const l = document.getElementById('show')
+  k.addEventListener('click', (e) => {
+    if (l.className.split(' ').includes("hidden")) {
+      l.classList.remove("hidden")
+      l.classList.add("flex", "flex-col", "space-y-3", "bg-gray-800")
+      l.style.flexDirection = "column";
+      l.style.position = "absolute";
+      l.style.zIndex = 15;
+      l.style.backgroundColor = "bg-gray-800";
+      l.style.borderRadius="0 0 10px 10px";
+    }
+    else {
+      l.classList.add("hidden")
+    }
+  })
+</script>

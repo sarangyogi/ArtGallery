@@ -52,21 +52,3 @@ for(let i=0;i<category.length;i++){
         // console.log("clicked",i);
     });
 }
-const num=Math.floor(Math.random() * 10);
-// document.cookie="Welcome to Art Gallery!";
-let message="Hello! Welcome to Art Gallery!";
-// const k=document.cookie;
-try{
-    window.alert(`${message} Your Lucky Number is: ${num}`);
-    // window.open(`Hello! Welcome to Art Gallery!  Your Lucky Number is: ${num}`);
-}
-catch(error){
-    window.alert("An Error Occured to Open this Page!");
-}
-
-const openwindow=()=>{
-    myWindow=window.open("https://en.wikipedia.org/wiki/Art_gallery","","width:400,height:400");
-}
-const closewindow=()=>{
-    myWindow.close();
-}

@@ -1,87 +1,94 @@
 {{>header}}
+
 <body>
     {{>navbar}}
-
-    <h1 class="heading">Contact Us</h1>
-    <section class="contact">
-        <article class="leftcontact">
-            <div><h2>Art Gallery</h2>
-                <p>Bhavan's Campus
-                    Azad Nagar
-                    Andheri (West)
-                    Mumbai - 400052
-                    Monday to Saturday 10:30 am - 8:00 pm
-                </p>
+    {{!-- flex justify-center flex-wrap w-full --}}
+    <div class="mx-4 text-center">
+        <div class="h-20">
+            <div class="w-full">
+                <iframe class="w-full"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.645933602999!2d72.8339267142134!3d19.123182655458702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9d90e067ba9%3A0x16268e5d6bca2e6a!2sBharatiya%20Vidya%20Bhavan&#39;s%20Sardar%20Patel%20Institute%20of%20Technology%20(SPIT)!5e0!3m2!1sen!2sin!4v1631463385379!5m2!1sen!2sin"
+                    style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div><h2>Telephone</h2>
-                <p><a href="tel:1234567891">+91-1234567891</a></p>
-            </div>
-            <div><h2>Enquires</h2>
-                <p><a href="mailto:someone@gmail.com" target="_blank"><code>someone@gmail.com</code></a></p>
-            </div>
-        </article>
-        <div class="map">
-            <iframe class="innermap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.645933602999!2d72.8339267142134!3d19.123182655458702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9d90e067ba9%3A0x16268e5d6bca2e6a!2sBharatiya%20Vidya%20Bhavan&#39;s%20Sardar%20Patel%20Institute%20of%20Technology%20(SPIT)!5e0!3m2!1sen!2sin!4v1631463385379!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-    </section>
-    <section class="contactform">
-        <form onsubmit="/contact" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name"/>
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone"/>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" />
-            <label for="message">Message</label>
-            <textarea name="message"></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </section>
-    <footer>
-        <address>
-            Dosti height Apartments<br>
-            Antop Hill, wadala.<br>
-            Mumbai<br>
-            open time: 9am to 10pm
-        </address>
-    </footer>
-    {{!-- <script>
+        <div class="flex justify-center">
+            <div class="px-4 mt-2 text-left bg-white shadow-lg lg:w-1/2">
+                <div class="text-center py-3">Contact Us</div>
+                <form onsubmit="/contact" method="POST">
+                    <div class="form-group mb-6">
+                        <input type="text"
+                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
+                    bg-white bg-clip-padding border border-solid border-gray-300
+                    rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="name" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group mb-6">
+                        <input type="phone"
+                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
+                    bg-white bg-clip-padding border border-solid border-gray-300
+                    rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="phone" name="phone" placeholder="Phone">
+                    </div>
+                    <div class="form-group mb-6">
+                        <input type="email" class="form-control block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="email"
+                            name="email" placeholder="Email address">
+                    </div>
+                    <div class="form-group mb-6">
+                        <textarea class="
+                    form-control
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                " id="message" name="message" rows="3" placeholder="Message"></textarea>
+                    </div>
+                    <button type="submit" class="
+                w-full
+                px-6
+                py-2.5
+                mb-3
+                text-white
+                bg-blue-600
+                font-medium
+                text-xs
+                leading-tight
+                uppercase
+                rounded
+                shadow-md
+                hover:bg-blue-700 hover:shadow-lg
+                focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+                active:bg-blue-800 active:shadow-lg
+                transition
+                duration-150
+                ease-in-out">Send</button>
+                </form>
+            </div>
+        </div>
 
-        function setCookie(cname,cvalue,exdays) {
-            const d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            let expires = "expires=" + d.toGMTString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        }
-        
-        function getCookie(cname) {
-            let name = cname + "=";
-            let decodedCookie = decodeURIComponent(document.cookie);
-            let ca = decodedCookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-        
-        function checkCookie() {
-            let user = getCookie("username");
-            if (user != "") {
-                alert("Welcome again " + user);
-            } else {
-                user = prompt("Please enter your name:","");
-                if (user != "" && user != null) {
-                    setCookie("username", user, 30);
-                }
-            }
-        }
-        // console.log(document.cookie);
-    </script> --}}
+    </div>
+
     {{>footer}}
 </body>

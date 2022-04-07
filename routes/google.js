@@ -19,16 +19,14 @@ const createToken=(id)=>{
 }
 var tempmail="";
 
-//facebook strategy
 passport.use(new googleStrategy({
-
     // pull in our app id and secret from our auth.js file
-    clientID        : "970905875030-q6p06hgqfequ1q1rbq22oo31v12tb127.apps.googleusercontent.com",
-    clientSecret    : "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",
+    clientID        : process.env.GOOGLE_CLIENT_ID,
+    clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
     callbackURL     : "http://localhost:3000/auth/google/callback",
     profileFields:['id','displayName','email']
 
-},// facebook will send back the token and profile
+},
 async function(tok, refreshToken, profile, done) {
     // const name=profile.displayName;
     const email=profile._json['email'];
@@ -71,9 +69,18 @@ router.get('/callback',passport.authenticate('google',{
 router.get('/success',async (req,res)=>{
     try{
         await User.find({email:tempmail},(err,result)=>{
-            // console.log(result[0])
-            const token=createToken(result[0]["_id"]);
-            res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+            console.log(result.length)
+            if(err){
+                res.redirect('/')
+            }
+            if(result.length==0){
+                res.redirect('/login')
+            }
+            else{
+                console.log(result)
+                const token=createToken(result[0]["_id"]);
+                res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+            }
         })
         res.redirect('/');
     }

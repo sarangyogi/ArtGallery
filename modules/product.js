@@ -17,6 +17,10 @@ const ProductSchema= new Schema({
     price:{
         type:Number,
         required:true,
+    },
+    createdBy:{
+        type:String,
+        required:true,
     }
 });
 

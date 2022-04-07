@@ -24,10 +24,9 @@ var tempmail="";
 
 //facebook strategy
 passport.use(new facebookStrategy({
-
     // pull in our app id and secret from our auth.js file
-    clientID        : "405287614581004",
-    clientSecret    : "99bd56fef9d9e337d32970adf069c47d",
+    clientID        : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL     : "http://localhost:3000/auth/facebook/callback",
     profileFields:['id','displayName','email']
 
@@ -73,9 +72,17 @@ router.get('/callback',passport.authenticate('facebook',{
 router.get('/success',async (req,res)=>{
     try{
         await User.find({email:tempmail},(err,result)=>{
-            // console.log(result[0])
-            const token=createToken(result[0]["_id"]);
-            res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+            console.log(result,tempmail)
+            if(err){
+                res.redirect('/')
+            }
+            if(result.length==0){
+                res.redirect('/login')
+            }
+            else{
+                const token=createToken(result[0]["_id"]);
+                res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+            }
         })
         res.redirect('/');
     }

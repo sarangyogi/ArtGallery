@@ -18,6 +18,10 @@ const employeeSchema= new mongoose.Schema({
         type:String,
         required:true,
         minlength:[4,'Minimum password length is 4 characters']
+    },
+    isArtist:{
+        type:Boolean,
+        required:true,
     }
 })
 // employeeSchema.methods.encryptPassword= (password)=>{

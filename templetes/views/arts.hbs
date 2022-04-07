@@ -2,7 +2,7 @@
 
 <body>
     {{>navbar}}
-    <div class="">
+    <div class="bg-white">
         <div class="p-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {{#each products}}
             {{#each this}}
@@ -24,12 +24,12 @@
                             <p class="mt-1 text-sm text-gray-500">Price</p>
                         </div>
                         <div>
-                            <form onsubmit="/gallery" class="" method="POST">
+                            <form onsubmit="/arts" class="galleryform bg-black" method="POST">
                                 <input type="hidden" name="imagePath" value={{this.imagePath}} />
                                 <input type="hidden" name="title" value={{this.title}} />
                                 <input type="hidden" name="description" value={{this.description}} />
                                 <input type="hidden" name="price" value={{this.price}} />
-                                <button type="submit" class="">Add to Cart</button>
+                                <button type="submit" class="bg-slate-200 hover:bg-slate-400">Delete</button>
                             </form>
                             <p>----</p>
                             <p class="text-sm font-medium text-gray-900">{{this.price}}</p>
@@ -43,6 +43,7 @@
 
         </div>
     </div>
+
     <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
     {{>footer}}
 </body>

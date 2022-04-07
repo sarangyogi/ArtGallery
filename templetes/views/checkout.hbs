@@ -1,29 +1,45 @@
 {{>header}}
+
 <body>
-    {{>navbar}}
-    <form action="/create-checkout-session" class="" method="post">
-        Email :<input type="email" name="imagePath"/><br/>
-        Name :<input type="text" name="name" /><br/>
-        Address : <input type="text" name="address"/><br/>
-        Postal code :<input type="number" name="postal"/><br/>
-        City :<input type="text" name="city"/><br/>
-        State :<input type="text" name="state"/><br/>
-        Country :<input type="text" name="country"/><br/>
-        <input type="hidden" name="price" value={{amount}} /><br/>
-        <button type="submit" class="btn btn-primary">Checkout</button><br/>
-        {{!-- <script
-        src="//checkout.stripe.com/v2/checkout.js"
-        class="stripe-button"
-        data-key={{key}}
-        data-amount={{amount}}
-        data-currency="usd"
-        data-locale="auto" > 
-        </script>  --}}
-    </form>
-    <script src="https://js.stripe.com/v3/"></script>
+  {{>navbar}}
+  {{!-- <form action="/create-checkout-session" class="" method="post">
+    Email :<input type="email" name="imagePath" /><br />
+    Name :<input type="text" name="name" /><br />
+    Address : <input type="text" name="address" /><br />
+    Postal code :<input type="number" name="postal" /><br />
+    City :<input type="text" name="city" /><br />
+    State :<input type="text" name="state" /><br />
+    Country :<input type="text" name="country" /><br />
+    <input type="hidden" name="price" value={{amount}} /><br />
+    <button type="submit" class="btn btn-primary">Checkout</button><br />
+    <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key={{key}} data-amount={{amount}}
+      data-currency="usd" data-locale="auto">
+      </script>
+  </form> --}}
+  <form action="/charge" method="POST">
+    Email :<input type="email" name="imagePath" /><br />
+    Name :<input type="text" name="name" /><br />
+    Address : <input type="text" name="address" /><br />
+    Postal code :<input type="number" name="postal" /><br />
+    City :<input type="text" name="city" /><br />
+    State :<input type="text" name="state" /><br />
+    Country :<input type="text" name="country" /><br />
+    <input type="hidden" name="price" value={{amount}} />
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{key}}"
+      data-amount="{{amount}}" data-name="Art Gallery" data-description="Paintings and Arts"
+      data-image="/assets/logo.png" data-locale="auto">
+      </script>
     <script>
-        var stripe = Stripe("pk_test_51K08A5SFuW4CQ0ZGjrVDlI3t2rbE2TAq8UdOX5S3Nl9byxsLyp5ueKusql4qI6XJxPTBxfcFyTXZpPeU4Bq3RK1G00Mi436IXV");
-        stripe.redirectToCheckout({ sessionId: session.id });
+      // Hide default stripe button
+      document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
     </script>
+    <button type="submit" class="btn btn-outline-dark text-white btn-lg">Purchase For {{amount}}</button>
+  </form>
+  <script src="https://js.stripe.com/v3/"></script>
+  {{!--
+  <script>
+    var stripe = Stripe("pk_test_51K08A5SFuW4CQ0ZGjrVDlI3t2rbE2TAq8UdOX5S3Nl9byxsLyp5ueKusql4qI6XJxPTBxfcFyTXZpPeU4Bq3RK1G00Mi436IXV");
+    stripe.redirectToCheckout({ sessionId: session.id });
+  </script> --}}
 
 </body>

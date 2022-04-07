@@ -3,7 +3,7 @@ const User = require('../modules/user');
 
 const requireAuth=(req,res,next)=>{
     const token=req.cookies.jwt;
-
+    console.log(token)
     if(token){
         jwt.verify(token,"My Super Secret",(err,decodedToken)=>{
             if(err){

@@ -153,8 +153,7 @@
   "scripts": {
     "start": "node app.js",
     "build:css": "postcss public/css/tailwind.css -o public/css/index.css",
-    "heroku-prebuild": "npm install --dev",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix arttgallery && npm run build --prefix arttgallery"
+    "heroku-prebuild": "npm install --dev"
   },
   "engines": {
     "node": "14.17.6"

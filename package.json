@@ -152,7 +152,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss public/css/tailwind.css -o public/css/index.css"
+    "start": "node app.js",
+    "build:css": "postcss public/css/tailwind.css -o public/css/index.css",
+    "build": "webpack"
+  },
+  "engines": {
+    "node": "14.17.6"
   },
   "author": "",
   "license": "ISC"

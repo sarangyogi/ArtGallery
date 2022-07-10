@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 const { isEmail }=require('validator');
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 
 
 const employeeSchema= new mongoose.Schema({
@@ -32,8 +32,8 @@ const employeeSchema= new mongoose.Schema({
 // }
 
 employeeSchema.pre('save', async function(next){
-    const salt=await bcrypt.genSalt();
-    this.password=await bcrypt.hash(this.password,salt);
+    const salt=await bcrypt.genSaltSync();
+    this.password=await bcrypt.hashSync(this.password,salt);
     next();
 })
 
@@ -41,7 +41,7 @@ employeeSchema.pre('save', async function(next){
 employeeSchema.statics.login=async function(email,password){
     const user=await this.findOne({email});
     if(user){
-        const auth=bcrypt.compare(password,user.password);
+        const auth=bcrypt.compareSync(password,user.password);
         if(auth){
             return user;
         }

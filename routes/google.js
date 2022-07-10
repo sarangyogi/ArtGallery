@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const passport=require('passport');
 const googleStrategy=require('passport-google-oauth20').Strategy;
@@ -34,7 +34,7 @@ async function(tok, refreshToken, profile, done) {
     tempmail=email;
     let password=profile.id;
     try{
-        // password=await bcrypt.hash(password,10);
+        // password=await bcrypt.hashSync(password,10);
         const registerEmployee=new User({
             name:name,
             email:email,

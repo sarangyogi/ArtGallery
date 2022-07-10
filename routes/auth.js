@@ -6,7 +6,7 @@ const mongoose=require('mongoose');
 // const passport = require('passport');
 const User=require('./../modules/user');
 // const csrf=require('csurf');
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const { requireAuth,checkUser }=require('./../middleware/authMiddleware');
 

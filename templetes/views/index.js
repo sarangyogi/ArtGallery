@@ -2,9 +2,6 @@ let category=document.getElementsByClassName("categories");
 // let right=document.getElementById("right");
 let right=document.getElementsByClassName("right");
 
-
-// console.log(category[0]);
-// console.log(right[0]);
 let description=[
     {
         heading:"Antique Paintings",
@@ -44,11 +41,9 @@ let description=[
 ];
 
 for(let i=0;i<category.length;i++){
-    // console.log(category.length);
     category[i].addEventListener("click",()=>{
         right[0].innerHTML=`<h1>${description[i].heading}</h1><img src=${description[i].img} class="homeimg" />
         <div class="homedesc">${description[i].desc}</div>`;
-        console.log("clicked",i);
     });
 }
 

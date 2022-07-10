@@ -13,7 +13,7 @@ const { requireAuth,checkUser }=require('./../middleware/authMiddleware');
 
 
 require("./../db/conn");
-
+const JWT_SECRET=process.env.JWT_SECRET_KEY
 
 const handleError=(err)=>{
     console.log(err.message);
@@ -22,7 +22,6 @@ const handleError=(err)=>{
     //validation errors
     if(err.message.includes('user validation failed')){
         Object.values(err.errors).forEach(({properties})=>{
-            // console.log(properties);
             error[properties.path]=properties.message;
         });
     }
@@ -30,7 +29,7 @@ const handleError=(err)=>{
 }
 const maxAge=3*24*60*60;
 const createToken=(id)=>{
-    return jwt.sign({ id },'My Super Secret',{
+    return jwt.sign({ id },JWT_SECRET,{
         expiresIn:maxAge
     });
 }
@@ -56,9 +55,7 @@ router.post('/register',async (req,res)=>{
             password:password,
             isArtist:isArtist,
         })
-        // console.log(name,password,email);
         const user= await registerEmployee.save();
-        // console.log(user);
         const token=createToken(user._id);
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
 
@@ -95,25 +92,6 @@ router.post('/login',async (req,res)=>{
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
 
         res.redirect('/');
-        
-        // const useremail=await User.findOne({email:email}).lean();
-
-        // if(await bcrypt.compare(password,useremail.password)){
-        //     const token=jwt.sign({
-        //         id:useremail.__id,
-        //         email:username.email
-        //     },JWT_SECRET)
-            
-        // }
-        // console.log(token);
-        // return res.json({status:"ok",data:token})
-        // const databasepassword=useremail.password;
-        // if(databasepassword===password){
-        //     res.redirect('/');
-        // }else{
-        //     res.status(400).redirect("/login");
-        // }
-        
     }catch(error){
         const err=handleError(error);
         res.status(400).redirect("/login");

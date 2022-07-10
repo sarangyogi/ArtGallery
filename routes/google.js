@@ -8,12 +8,12 @@ const expressValidator = require('express-validator');
 const User=require('./../modules/user');
 router.use(expressValidator());
 
-
+const JWT_SECRET=process.env.JWT_SECRET_KEY
 router.use(passport.initialize());
 
 const maxAge=3*24*60*60;
 const createToken=(id)=>{
-    return jwt.sign({ id },'My Super Secret',{
+    return jwt.sign({ id },JWT_SECRET,{
         expiresIn:maxAge
     });
 }
@@ -40,12 +40,10 @@ async function(tok, refreshToken, profile, done) {
             email:email,
             password:password,
         })
-        // console.log(name,password,email);
         const user= await registerEmployee.save();
     }catch(error){
         return done(null,profile)
     }
-    // console.log(profile)
     return done(null,profile)
 }));
 
@@ -69,7 +67,6 @@ router.get('/callback',passport.authenticate('google',{
 router.get('/success',async (req,res)=>{
     try{
         await User.find({email:tempmail},(err,result)=>{
-            console.log(result.length)
             if(err){
                 res.redirect('/')
             }
@@ -77,7 +74,6 @@ router.get('/success',async (req,res)=>{
                 res.redirect('/login')
             }
             else{
-                console.log(result)
                 const token=createToken(result[0]["_id"]);
                 res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
             }
@@ -91,7 +87,6 @@ router.get('/success',async (req,res)=>{
 
 router.get('/failed',(req,res)=>{
     res.redirect('/register');
-    // res.send("Login failed");
 })
 
 module.exports=router;

@@ -75,18 +75,9 @@ app.use((req,res,next)=>{
 const staticPath=path.join(__dirname,'./public');
 const partial_path=path.join(__dirname,'./templetes/partials')
 app.use(express.static(staticPath));
-// mongodb+srv://user:<password>@nodecrash.x5lyq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-// const dbURI="mongodb+srv://user:easypassword@nodecrash.x5lyq.mongodb.net/nodecrash?retryWrites=true&w=majority";
-// mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
-// .then((result)=>{
-//     console.log('Connected to DB');
-// })
-// .catch((error)=>{
-//     console.log(error);
-// });
 
 app.listen(3000,()=>{
-    console.log('Listening on port 3000');
+    console.log('Server Started');
 });
 
 app.set("view engine","hbs");
@@ -124,8 +115,6 @@ app.get('/about',(req,res)=>{
     res.render("about");
 })
 app.get('/gallery',requireAuth,(req,res)=>{
-    // const email=res.locals.user.email;
-    // console.log(email,res.locals.user.isArtist)
     res.locals.user.isArtist?
     (res.redirect("/arts"))
     :(Product.find((err,doc)=>{
@@ -135,7 +124,6 @@ app.get('/gallery',requireAuth,(req,res)=>{
 
 app.get('/arts',(req,res)=>{
     res.locals.user.isArtist?(Product.find({createdBy:res.locals.user.email},(err,doc)=>{
-    //   console.log(doc)
       res.render("arts",{products:doc});
     })): res.redirect("/gallery")
 })
@@ -143,7 +131,6 @@ app.post('/arts',checkUser,(req,res)=>{
     const email=res.locals.user.email;
     const imagePath=req.body.imagePath;
     Product.find({imagePath:imagePath,createdBy:email},(err,result)=>{
-        console.log(result,email,imagePath);
         product.deleteOne({_id:result[0]['_id']})
         .then((result)=>{
             console.log("Product is removed Successfully!",result);
@@ -156,7 +143,6 @@ app.post('/arts',checkUser,(req,res)=>{
     
 })
 app.post('/deleteArt',(req,res)=>{
-    console.log(res.locals.user.email)
     res.redirect("/artist/arts")
 })
 
@@ -194,10 +180,6 @@ app.post('/contact',(req,res)=>{
 app.put('/user/:name/:newName',(req,res)=>{
     const name =req.params.name;
     const newName=req.params.newName;
-    // const user=User.find(e=>e.name==name);
-    // user.name=newName;
-    // res.send(user);
-    // console.log(name,newName);
     User.findOne({name:name}).then(result=>{
         if(result){
 
@@ -219,11 +201,9 @@ app.get('/profile',(req,res)=>{
 })
 
 app.get('/cart',requireAuth,(req,res)=>{
-    // console.log(res.locals.user)
     if(res.locals.user){
         const email=res.locals.user["email"];
         Cart.find({email},(err,doc)=>{
-            // console.log(doc.length);
             let amount=0
             doc.map(product=>{
                 amount+=product.price;
@@ -242,7 +222,6 @@ app.post('/cartdelete',checkUser,(req,res)=>{
     const email=res.locals.user["email"];
     const imagePath=req.body.imagePath;
     Cart.find({imagePath:imagePath,email:email},(err,result)=>{
-        // console.log(result,email,imagePath);
         Cart.deleteOne({_id:result[0]['_id']})
         .then((result)=>{
             console.log("Product is removed Successfully!",result);
@@ -253,11 +232,9 @@ app.post('/cartdelete',checkUser,(req,res)=>{
 })
 
 app.delete('/cart/:id',(req,res)=>{
-    // console.log(req.params.imagePath);
     Cart.deleteOne({_id:req.params.id})
     .then(result=>{
         console.log("Product is removed")
-        console.log(result);
         res.send(result);
     })
     // res.redirect('/cart');
@@ -269,7 +246,6 @@ app.post('/gallery',checkUser,(req,res)=>{
     const imagePath=req.params.imagePath;
     const finding=Cart.findOne({imagePath:imagePath})
     .then(result=>{
-        console.log(result)
         if(!result){
             const cart=new Cart({
                 imagePath:req.body.imagePath,
@@ -291,153 +267,3 @@ app.post('/gallery',checkUser,(req,res)=>{
         res.send(err);
     })
 })
-
-
-// app.get('/set-cookies',(req,res)=>{
-//     res.cookie('newUser',false);
-//     res.send("You got the cookies!");
-// })
-
-// app.get('/read-cookies',(req,res)=>{
-//     const cookies=req.cookies;
-//     res.json(cookies);
-// })
-
-// app.get('/register',(req,res)=>{
-//     res.render("register");
-// })
-// app.use(express.urlencoded({extended:true}));
-// app.post('/register',async (req,res)=>{
-//     try{
-//         const name=req.body.name;
-//         const email=req.body.email;
-//         const password=req.body.password;
-//         const registerEmployee=new User({
-//             name:name,
-//             email:email,
-//             password:password,
-//         })
-//         // console.log(name,password,email);
-//         const user= await registerEmployee.save();
-
-//         res.redirect('/register');
-//     }catch(error){
-//         res.status(400).send(error);
-//     }
-// })
-// app.get('/login',(req,res)=>{
-//     res.render("login");
-// })
-
-// app.post('/login',async (req,res)=>{
-//     try{
-//         const email=req.body.email;
-//         const password=req.body.password;
-
-//         const useremail=await Register.findOne({email:email});
-//         const databasepassword=useremail.password;
-//         // console.log(useremail);
-//         if(databasepassword===password){
-//             res.redirect('/');
-//         }else{
-//             res.sendStatus(400).redirect('/login');
-//         }
-        
-//     }catch(error){
-//         res.sendStatus(400).redirect("/login");
-//     }
-    
-// })
-
-// app.use(express.urlencoded({extended:true}));
-// app.post('/contactme',(req,res)=>{
-//     const artContact=new ArtContact(req.body);
-//     artContact.save()
-//     .then(result=>res.sendFile('./views/contact.html',{ root: __dirname}))
-//     .catch(err=>console.log(err));
-// })
-
-
-// async function jsondata(){
-//     try{
-//         const siteUrl="https://en.wikipedia.org/wiki/List_of_most-visited_art_museums";
-//         const { data }=await axios({
-//             method: "GET",
-//             url:siteUrl,
-//         })
-//         const $=cheerio.load(data);
-//         const textselector='#mw-content-text > div.mw-parser-output > table > tbody > tr'
-
-//         const keys=[
-//             'N.',
-//             'Museum',
-//             'City',
-//             'Visitors annually',
-//             'Image',
-//         ]
-//         let artArray=[];
-
-//         $(textselector).each((index,element)=>{
-//             let keyIndex=0
-//             const artObj={}
-
-//             if(index<=10 && index>=1){
-//                 // console.log(index);
-//                 $(element).children().each((childindex,childelement)=>{
-//                     let value=$(childelement).text();
-
-//                     if(keyIndex==4){
-//                         value="Image URL"
-//                     }
-//                     if(value){
-//                         // console.log(value)
-//                         artObj[keys[keyIndex]]=value;
-//                         keyIndex++
-//                     }
-//                 })
-//                 if(artObj){
-//                     artArray.push(artObj);
-//                 }
-//             }
-//             // return index;
-//         })
-//         return artArray
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-// const headingColumnNames = [
-//     'N.',
-//     'Museum',
-//     'City',
-//     'Visitors annually',
-//     'Image',
-// ]
-// let headingColumnIndex = 1;
-// headingColumnNames.forEach(heading => {
-//     ws.cell(1, headingColumnIndex++)
-//         .string(heading)
-// });
-
-// app.get("/topart",async (req,res)=>{
-//     try{
-//         const toparts=await jsondata();
-
-//         let rowIndex = 2;
-//         toparts.forEach( record => {
-//             let columnIndex = 1;
-//             Object.keys(record ).forEach(columnName =>{
-//                 ws.cell(rowIndex,columnIndex++)
-//                     .string(record [columnName])
-//             });
-//             rowIndex++;
-//         });
-//         wb.write('jsondata.xlsx');
-
-//         return res.status(200).json({
-//             result:toparts,
-//         })
-//     }catch(err){
-//         return err
-//     }
-// })

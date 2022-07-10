@@ -1,11 +1,11 @@
 const jwt =require('jsonwebtoken');
 const User = require('../modules/user');
 
+const JWT_SECRET= process.env.JWT_SECRET_KEY
 const requireAuth=(req,res,next)=>{
     const token=req.cookies.jwt;
-    console.log(token)
     if(token){
-        jwt.verify(token,"My Super Secret",(err,decodedToken)=>{
+        jwt.verify(token,JWT_SECRET,(err,decodedToken)=>{
             if(err){
                 console.log(err.message);
                 res.redirect('/login');
@@ -24,7 +24,7 @@ const requireAuth=(req,res,next)=>{
 const checkUser=(req,res,next)=>{
     const token=req.cookies.jwt;
     if(token){
-        jwt.verify(token,"My Super Secret",async (err,decodedToken)=>{
+        jwt.verify(token,JWT_SECRET,async (err,decodedToken)=>{
             if(err){
                 console.log(err.message);
                 res.locals.user=null;

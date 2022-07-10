@@ -27,7 +27,6 @@ router.get('/upload',(req,res)=>{
     res.render("upload"):res.redirect("/")
 })
 router.post("/upload",upload,async(req, res) => {
-  // console.log(req.file.originalname,req.body)
   // imagePath: `assets/${req.file.fieldname}-${req.body.email}${path.extname(req.file.originalname)}`,
   try{
     const Art=new Product({
@@ -37,7 +36,6 @@ router.post("/upload",upload,async(req, res) => {
       price: req.body.price,
       createdBy: req.body.email,
     })
-    console.log(Art)
     const art=await Art.save()
     res.redirect("/artist/upload")
   }catch(err){

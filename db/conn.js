@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-mongoose.connect("mongodb://localhost:27017/ArtGallery",{
+mongoose.connect("mongodb+srv://user:easypassword@nodecrash.x5lyq.mongodb.net/ArtGallery?retryWrites=true&w=majority/ArtGallery",{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true,

@@ -2,38 +2,25 @@
 
 <body>
   {{>navbar}}
-  {{!-- <form action="/create-checkout-session" class="" method="post">
-    Email :<input type="email" name="imagePath" /><br />
-    Name :<input type="text" name="name" /><br />
-    Address : <input type="text" name="address" /><br />
-    Postal code :<input type="number" name="postal" /><br />
-    City :<input type="text" name="city" /><br />
-    State :<input type="text" name="state" /><br />
-    Country :<input type="text" name="country" /><br />
-    <input type="hidden" name="price" value={{amount}} /><br />
-    <button type="submit" class="btn btn-primary">Checkout</button><br />
-    <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key={{key}} data-amount={{amount}}
-      data-currency="usd" data-locale="auto">
-      </script>
-  </form> --}}
-  <form action="/charge" method="POST">
-    Email :<input type="email" name="imagePath" /><br />
-    Name :<input type="text" name="name" /><br />
-    Address : <input type="text" name="address" /><br />
-    Postal code :<input type="number" name="postal" /><br />
-    City :<input type="text" name="city" /><br />
-    State :<input type="text" name="state" /><br />
-    Country :<input type="text" name="country" /><br />
+  <form action="/charge" method="POST" class="text-center mx-1/4">
+    <div class="text-center">Email :</div><input type="email" name="imagePath" /><br />
+    <div class="text-center">Name :</div><input type="text" name="name" /><br />
+    <div class="text-center">Address : </div><input type="text" name="address" /><br />
+    <div class="text-center">Postal code :</div><input type="number" name="postal" /><br />
+    <div class="text-center">City :</div><input type="text" name="city" /><br />
+    <div class="text-center">State :</div><input type="text" name="state" /><br />
+    <div class="text-center">Country :</div><input type="text" name="country" /><br />
     <input type="hidden" name="price" value={{amount}} />
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{key}}"
-      data-amount="{{amount}}" data-name="Art Gallery" data-description="Paintings and Arts"
-      data-image="/assets/logo.png" data-locale="auto">
+      data-amount="{{stripeAmount}}" data-name="Art Gallery" data-description="Paintings and Arts"
+      data-image="/assets/logo.jpg" data-locale="auto">
       </script>
     <script>
       // Hide default stripe button
       document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
     </script>
-    <button type="submit" class="btn btn-outline-dark text-white btn-lg">Purchase For {{amount}}</button>
+    <br/>
+    <button type="submit" class="btn btn-outline-dark text-black btn-lg">Purchase For {{amount}}</button>
   </form>
   <script src="https://js.stripe.com/v3/"></script>
   {{!--

@@ -9,14 +9,14 @@ const expressValidator = require('express-validator');
 // const { requireAuth,checkUser }=require('./../middleware/authMiddleware');
 const User=require('./../modules/user');
 router.use(expressValidator());
-
+const JWT_SECRET=process.env.JWT_SECRET_KEY
 router.use(passport.initialize());
 // router.use(passport.session());
-// router.use(session({secret:"My super secret"}))
+// router.use(session({secret:JWT_SECRET}))
 
 const maxAge=3*24*60*60;
 const createToken=(id)=>{
-    return jwt.sign({ id },'My Super Secret',{
+    return jwt.sign({ id },JWT_SECRET,{
         expiresIn:maxAge
     });
 }

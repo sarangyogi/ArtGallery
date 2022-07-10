@@ -18,14 +18,13 @@ router.get('/payment',checkUser,(req,res)=>{
             doc.map(product=>{
                 amount+=product.price;
             })
-            res.render("checkout",{amount,key: Publishable_Key});
+            res.render("checkout",{amount,key: Publishable_Key,stripeAmount:amount*100});
         });
     }
 })
 
-router.post('/charge',async (req, res) => {
+router.post('/charge',checkUser,async (req, res) => {
   const amount = await req.body.price;
-  // console.log(req.body);
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken,
@@ -39,7 +38,7 @@ router.post('/charge',async (req, res) => {
     },
   })
   .then(customer => stripe.charges.create({
-    amount,
+    amount: amount*100,
     description: 'Art Gallery Painting',
     currency: 'inr',
     customer: customer.id

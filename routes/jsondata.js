@@ -33,7 +33,6 @@ async function jsondata(){
             const artObj={}
 
             if(index<=10 && index>=1){
-                // console.log(index);
                 $(element).children().each((childindex,childelement)=>{
                     let value=$(childelement).text();
 
@@ -41,7 +40,6 @@ async function jsondata(){
                         value="Image URL"
                     }
                     if(value){
-                        // console.log(value)
                         artObj[keys[keyIndex]]=value;
                         keyIndex++
                     }

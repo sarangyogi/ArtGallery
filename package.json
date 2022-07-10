@@ -153,7 +153,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "build:css": "postcss public/css/tailwind.css -o public/css/index.css",
-    "build": "webpack"
+    "build": "webpack",
+    "heroku-prebuild": "npm install --dev"
   },
   "engines": {
     "node": "14.17.6"

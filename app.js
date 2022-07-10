@@ -7,6 +7,15 @@ const morgan=require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
 //modules
+const mongoose=require("mongoose");
+mongoose.connect(process.env.MONGODB_SRV,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+}).then(()=>{
+    console.log("Connection successful!");
+}).catch((e)=>{
+    console.log("connection failed!",e);
+});
 const Product=require('./modules/product');
 const Contact=require('./modules/contact');
 const User=require('./modules/user');

@@ -76,7 +76,7 @@ const staticPath=path.join(__dirname,'./public');
 const partial_path=path.join(__dirname,'./templetes/partials')
 app.use(express.static(staticPath));
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log('Server Started');
 });
 

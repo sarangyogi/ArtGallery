@@ -89,7 +89,7 @@
     "minimatch": "^3.1.2",
     "minimist": "^1.2.6",
     "mongodb": "^4.7.0",
-    "mongoose": "^5.13.14",
+    "mongoose": "^6.4.4",
     "mongoose-legacy-pluralize": "^1.0.2",
     "morgan": "^1.10.0",
     "mpath": "^0.8.4",

@@ -146,12 +146,14 @@
     "utils-merge": "^1.0.1",
     "validator": "^13.7.0",
     "vary": "^1.1.2",
+    "webpack": "^5.73.0",
     "wordwrap": "^1.0.0",
     "wrappy": "^1.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
+    "build": "webpack",
     "build:css": "postcss public/css/tailwind.css -o public/css/index.css",
     "heroku-prebuild": "npm install --dev"
   },
@@ -159,5 +161,8 @@
     "node": "14.17.6"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^4.10.0"
+  }
 }

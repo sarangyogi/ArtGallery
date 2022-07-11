@@ -179,8 +179,13 @@ app.post('/contact',(req,res)=>{
             })
             .catch(err=>{
                 console.log(err);
+                res.redirect('/contact')
             })
         }
+    }).catch((error)=>{
+        console.log(error)
+        alert("You're already contacted the person.We'll be get back to you soon.")
+        res.redirect('/contact')
     });
     
 })

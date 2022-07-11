@@ -234,6 +234,9 @@ app.post('/cartdelete',checkUser,(req,res)=>{
         .then((result)=>{
             console.log("Product is removed Successfully!",result);
             res.redirect('/cart');
+        }).catch((error)=>{
+            console.log(error)
+            res.redirect('/cart');
         })
     })
     

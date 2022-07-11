@@ -265,6 +265,9 @@ app.post('/gallery',checkUser,(req,res)=>{
             cart.save()
             .then(result=>{
                 res.redirect('/gallery');
+            }).catch((error)=>{
+                console.log(error);
+                res.redirect('/gallery')
             });
         }
         else{
